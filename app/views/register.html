@@ -1,0 +1,62 @@
+<div class="row login_body">
+  <div class="span12">
+
+    <div class="form aniamted bounceIn" ng-controller="RegisterCtrl">
+      <div class="switch">
+        <i class="fa fa-pencil fa-times"></i>
+        <div class="tooltip animated rubberBand infinite">Click Me</div>
+      </div>
+      <div class="login">
+        <h2>Login To Your Account</h2>
+        <form novalidate>
+          <input placeholder="Email" type="text" ng-model="loginEmail"/>
+          <input placeholder="Password" type="password" ng-model="loginPassword" />
+          <button ng-click='login()'>Login</button>
+        </form>
+      </div>
+      <div class="register">
+        <h2>Create An Account</h2>
+        <form novalidate>
+          <input placeholder="Name" type="text" ng-model="registerName" />
+          <input placeholder="Email Address" ng-model="registerEmail" />
+          <input placeholder="Password" type="password" ng-model="registerPassword" />
+          <input placeholder="Confirm Password" type="password" ng-model="registerConfirmPassword" />
+          <button ng-click='register()'>Create</button>
+        </form>
+      </div>
+      <footer>
+        <img src="images/WiE1.png"/>
+      </footer>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $('.reg').click(function(){
+      $('.register-container').fadeIn(),
+        $('.login-container').hide(),
+        $('.reg').css("background","#1ABC9C"),
+        $('.log').css("background","rgba(225,225,225,0)");
+    });
+    $('.log').click(function(){
+      $('.login-container').fadeIn(),
+        $('.register-container').hide();
+      $('.log').css("background","#1ABC9C"),
+        $('.reg').css("background","rgba(225,225,225,0)");
+    });
+  });
+
+  $('.alert').delay(2000).fadeIn(300);
+
+  $('.fa-times-circle').click(function(){
+    $(this).parent('.alert').fadeOut(300);
+  });
+
+  $('.switch').click(function(){
+    $(this).children('i').toggleClass('fa-pencil');
+    $('.login').animate({height: "toggle", opacity: "toggle"}, "slow");
+    $('.register').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+</script>

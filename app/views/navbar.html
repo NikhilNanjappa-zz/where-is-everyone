@@ -1,0 +1,28 @@
+<div class="navbar navbar-fixed-top" ng-show="navbar" ng-controller="NavBarCtrl">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="index.html">Where is Everyone ?</a>
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+          <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i
+            class="fa fa-user"></i> {{myname}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li ng-show="updateStatusMenu"><a class="fa fa-calendar" ng-click="updateYourStatus()">Update My Status</a></li>
+              <li ng-show="viewStatusMenu"><a class="fa fa-eye" ng-click="ViewYourStatus()">View Statuses</a></li>
+              <li><a class="fa fa-sign-out" ng-click="logout()">Signout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /navbar-inner -->
+</div>
+<!-- /navbar -->

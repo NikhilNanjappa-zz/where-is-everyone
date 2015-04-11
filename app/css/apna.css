@@ -1,0 +1,260 @@
+@import url(http://fonts.googleapis.com/css?family=Josefin+Slab);
+
+/* Browser placeholders
+=================================================================== */
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color: white;
+  opacity: 0.001;
+	transition: opacity 1.5s 1s;
+	-webkit-transition: opacity 1.5s 1s;
+}
+input:focus::-webkit-input-placeholder {
+	color: white;
+	opacity: 1;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: transparent;
+	opacity:  1;
+	transition: opacity 1.5s 1s;
+	-moz-transition: opacity 1.5s 1s;
+}
+input:focus:-moz-placeholder {
+	color: white;
+	opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: transparent;
+	opacity:  1;
+	transition: opacity 1.5s 1s;
+	-moz-transition: opacity 1.5s 1s;
+}
+input:focus::-moz-placeholder {
+	color: white;
+	opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: transparent;
+	opacity: 0.001;
+	transition: opacity 1.5s 1s;
+	-ms-transition: opacity 1.5s 1s;
+}
+input:focus:-ms-input-placeholder {
+	color: white;
+	opacity: 1;
+}
+
+.form ::-webkit-input-placeholder {
+  color: gray;
+  opacity: 1;
+}
+
+.form > input:focus::-webkit-input-placeholder {
+    color: black;
+    opacity: 1;
+  }
+
+/* Outer Content Table 
+=================================================================== */
+.widget-content {
+	border: none;
+}
+.outer_content_table tbody:hover tr td{
+	transition: all 300ms;
+}
+.outer_content_table tbody:hover tr {
+	color: transparent;
+	text-shadow: 0 0 3px #aaa;
+}
+.outer_content_table tbody:hover tr:hover tr {
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
+}
+.outer_content_table thead th {
+	text-align: center;
+}
+#search_txt
+{
+  width:20px;
+  height:20px;
+  border-style:none;
+  border-radius:20px;
+  padding:10px;
+  margin-bottom: 0px;
+  background-color: #dc6161;
+  outline:none;
+  cursor:pointer;
+	background-image:url(/images/search_icon_light.png);
+  background-repeat:no-repeat;
+  font-family:'Segoe UI';
+  font-size:15px;
+  color:transparent;
+  overflow:hidden;
+  transition: all 0.9s ease-in-out;
+}
+#search_txt:focus
+{
+  width:80%;
+  cursor:text;
+  padding-left:40px;
+  color: white;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+#search_txt:hover,#search_txt:focus
+{
+  background-color: #dc6161;
+  background-image:url(/images/search_icon_dark.png);
+}
+
+/* Inner Header table
+=================================================================== */
+.table td {
+  border-top: none;
+}
+
+.inner_header_table tbody tr:nth-child(odd) td {
+	background-color: #232b2d;
+  color: white; 
+}
+.inner_header_table {
+	width: 100%;
+	line-height: 2.5;
+}
+.inner_content_table tbody {
+  font-family: 'Josefin Slab', serif;
+}
+.inner_header_table td{
+	text-align: center;
+  width: 33%;
+}
+.inner_header_table tbody:hover tr {
+	text-shadow: 0 0 0 #000;
+}
+.inner_header_table tbody tr td {
+	border-right: 1px solid #fff;
+}
+.inner_header_table tr td:before{
+	font-family: "FontAwesome";
+	content: "\f161";
+	padding-right: 10px;
+}
+.inner_header_table tr td.st-sort-ascent:before{
+	font-family: "FontAwesome";
+	content: "\f15d";
+	padding-right: 10px;
+}
+.inner_header_table tr td.st-sort-descent:before{
+	font-family: "FontAwesome";
+	content: "\f15e";
+	padding-right: 10px;
+}
+
+/* Inner Content table
+=================================================================== */
+.inner_content_table tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th {
+	background-color: transparent;
+	border: none;
+}
+.inner_content_table tbody tr:nth-child(even) td, .table-striped tbody tr:nth-child(even) th {
+	background-color: transparent;
+	border: none;
+	transition: all 300ms;
+}
+.inner_content_table tbody tr:hover td, .table tbody tr:hover th {
+	background-color: transparent;
+	border: none;
+}
+.inner_content_table {
+	border: none;
+	width: 100%;
+	background: #f1f1f1 url(http://jackrugile.com/images/misc/noise-diagonal.png);
+}
+.inner_content_table .emp_avatar {
+	width: 1%;
+	height: auto;
+	border: none;
+}
+ul.dashboard-list.metro li .avatar {
+	width: 60px;
+	height: 60px;
+	border: 1px solid #6c1d5f;
+	padding: 0;
+	/*-webkit-clip-path: polygon(0 50%, 15% 15%, 50% 0, 85% 15%, 100% 50%, 85% 85%, 50% 100%, 15% 85%);*/
+	/*-webkit-clip-path: polygon(50% 0, 100% 38%, 80% 100%, 20% 100%, 0 38%);*/
+	/*-webkit-clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);*/
+}
+.inner_content_table .emp_name {
+	width: 33%;
+	height: auto;
+	border: none;
+  text-align: center;
+}
+.inner_content_table .emp_status {
+	text-align: center;
+	width: 33%;
+	height: auto;
+	border: none;
+}
+.inner_content_table .emp_remarks {
+  text-align: center;
+	width: 33%;
+	height: auto;
+	border: none;
+}
+.emp_remarks button {
+	border: none;
+	padding: 2px 4px;
+}
+.emp_status .popover.top .arrow {
+	border-top: 5px solid #00a99d;
+}
+.popover-inner {
+	background: #00a99d;
+}
+
+/* Fill Status Modal
+=================================================================== */
+.jqi select{
+  outline: none;
+}
+.lead {
+  background-color: #6c1d5f;
+  color: white;
+}
+.jqi .jqiclose {
+  color: white;
+  width: 22px;
+  top: 12px;
+}
+.jqi .btn {
+  outline: none;
+}
+.jqi .btn-primary {
+  background-color: #6c1d5f;
+  outline: none;
+}
+
+/* Calendar
+=================================================================== */
+.fc-event-skin {
+  background-color: #dc6161;
+  border-color: #dc6161;
+}
+#calendar2 {
+  margin-top: 50px;
+}
+#calendar2 .fc-content{
+  display: none;
+}
+.fc-header-center {
+  font-family: 'Josefin Slab', serif;
+}
+/* NavBar
+=================================================================== */
+
+.nav-collapse .fa::before {
+  padding-right: 5px;
+}
