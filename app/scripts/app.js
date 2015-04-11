@@ -2,32 +2,71 @@
 
 /**
  * @ngdoc overview
- * @name nikhilnanjappaApp
+ * @name whereIsEveryoneApp
  * @description
- * # nikhilnanjappaApp
+ * # whereIsEveryoneApp
  *
  * Main module of the application.
  */
-angular
-  .module('nikhilnanjappaApp', [
+var app = angular
+  .module('whereIsEveryoneApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'smart-table',
+    'ui.bootstrap',
+    'ui-notification'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/about', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/date', {
+        templateUrl: 'views/date.html',
+        controller: 'DateCtrl'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+        controller : function(){
+          window.location.replace('/404.html');
+        },
+        template : "<div></div>"
       });
   });
+
+// var app = angular.module('whereIsEveryoneApp', ['ngRoute']);
+
+// app.controller('RootCtrl', ['$scope', function($scope){
+//     $scope.title = "Home Page";
+// }]);
+
+// app.controller('CatsCtrl', ['$scope', function($scope){
+//     $scope.title = "Cats Page";
+// }]);
+
+// app.config(['$routeProvider', function($routeProvider){
+//     $routeProvider
+//         .when('/', {
+//             controller : 'RootCtrl',
+//             template : '<h1>{{title}}</h1>'
+//         })
+//         .when('/cats', {
+//             controller : 'CatsCtrl',
+//             template : '<h1>{{title}}</h1>'
+//         })
+//         .otherwise({
+//             redirectTo : '/'
+//         });
+// }]);

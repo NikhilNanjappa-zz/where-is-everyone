@@ -2,16 +2,12 @@
 
 /**
  * @ngdoc function
- * @name nikhilnanjappaApp.controller:MainCtrl
+ * @name whereIsEveryoneApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the nikhilnanjappaApp
+ * Controller of the whereIsEveryoneApp
  */
-angular.module('nikhilnanjappaApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+app.controller('MainCtrl', function ($scope) {
+
+
+});

@@ -11,51 +11,81 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/pages/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/register.css">
+    <link href="css/baseclass.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
+    <link href="css/apna.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="appApp">
+  <body ng-app="whereIsEveryoneApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+<!--<div class="main">-->
+  <!--<div class="main-inner">-->
+    <!--<div class="container">-->
 
-            <a class="navbar-brand" href="#/">app</a>
-          </div>
+      <div ng-view></div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+    <!--</div>-->
+    <!--&lt;!&ndash; /container &ndash;&gt;-->
+  <!--</div>-->
+  <!--&lt;!&ndash; /main-inner &ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash; /main &ndash;&gt;-->
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--<div class="all" ng-include src="'views/footer.html'" ng-controller="FooterCtrl">-->
+<!--</div>-->
 
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
+<!-- Le javascript
+================================================== --> 
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery-1.7.2.min.js"></script> 
+<script src="js/excanvas.min.js"></script> 
+<script src="js/chart.min.js" type="text/javascript"></script>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="js/jquery-impromptu.js"></script>
+<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+<script src="js/full-calendar/fullcalendar.min.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/register.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/about.js"></script>
+<script src="scripts/controllers/date.js"></script>
+<script src="scripts/controllers/navbar.js"></script>
+<script src="scripts/controllers/footer.js"></script>
+<!-- endbuild -->
+
+<script src="js/base.js"></script>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -69,24 +99,5 @@
        ga('send', 'pageview');
     </script>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
 </body>
 </html>
