@@ -51,7 +51,7 @@
           Notification.primary('Your new Account has been created');
           cookieStore.put("emp_name", data.message.name);
           cookieStore.put("emp_id", data.message.id);
-          location.path("/");
+          location.path("/about");
         }
       }).
         error(function (data, status, headers, config) {
@@ -85,7 +85,7 @@
           Notification.primary('You are Successfully logged in');
           cookieStore.put("emp_name", data.message.name);
           cookieStore.put("emp_id", data.message.id);
-          location.path('/');
+          location.path('/about');
         }
       }).
         error(function(data, status, headers, config) {

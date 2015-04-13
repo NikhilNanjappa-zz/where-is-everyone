@@ -85,9 +85,6 @@ app.controller('AboutCtrl', ['$scope','$http','$templateCache','$compile','$cook
 
     console.log(req.url);
     http(req).success(function(data, status){
-      scope.status = status;
-      scope.data = data;
-      console.log(data.message);
       scope.rowCollection = data.message;
       scope.itemsByPage=15;
     }).
@@ -132,5 +129,30 @@ app.controller('AboutCtrl', ['$scope','$http','$templateCache','$compile','$cook
   scope.getMyStatus = function() {
     scope.getStatuses(scope.formatted_current_date, cookieStore.get("emp_id"));
   }
+
+  scope.status = [
+    'WorkingFromHome',
+    'OnClientSide',
+    'Sick',
+    'InOffice',
+    'PL',
+    'CL',
+    'Others'
+  ];
+
+  scope.selectedStatus = [].concat(scope.status);
+
+  scope.selectStatus = function (statusSelected) {
+    var foundAt = scope.selectedStatus.indexOf(statusSelected);
+    if(foundAt > -1) {
+      scope.selectedStatus.splice(foundAt, 1);
+    } else {
+      scope.selectedStatus.push(statusSelected);
+    }
+  };
+
+  scope.filterByStatus = function (leave) {
+    return (scope.selectedStatus.indexOf(leave.status) !== -1);
+  };
 
 }]);

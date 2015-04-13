@@ -28,7 +28,7 @@ app.controller('NavBarCtrl', function ($scope, $cookieStore, $location, Notifica
   }
 
   $scope.ViewYourStatus = function () {
-    $location.path("/");
+    $location.path("/about");
   }
 
 });

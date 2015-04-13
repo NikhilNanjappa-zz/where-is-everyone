@@ -59,6 +59,9 @@ input:focus:-ms-input-placeholder {
 .widget-content {
 	border: none;
 }
+.action-table {
+	overflow: visible;
+}
 .outer_content_table tbody:hover tr td{
 	transition: all 300ms;
 }
@@ -150,6 +153,9 @@ input:focus:-ms-input-placeholder {
 	font-family: "FontAwesome";
 	content: "\f15e";
 	padding-right: 10px;
+}
+.inner_header_table a {
+	color: #dc6161;
 }
 
 /* Inner Content table
