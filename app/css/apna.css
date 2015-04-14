@@ -139,7 +139,7 @@ input:focus:-ms-input-placeholder {
 .inner_header_table tbody tr td {
 	border-right: 1px solid #fff;
 }
-.inner_header_table tr td:before{
+.inner_header_table tr td:first-child:before{
 	font-family: "FontAwesome";
 	content: "\f161";
 	padding-right: 10px;

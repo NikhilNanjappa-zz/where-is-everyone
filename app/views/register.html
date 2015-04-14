@@ -3,7 +3,7 @@
 
     <div class="form aniamted bounceIn" ng-controller="RegisterCtrl">
       <div class="switch">
-        <i class="fa fa-pencil fa-times"></i>
+        <i class="fa fa-user-plus fa-sign-in"></i>
         <div class="tooltip animated rubberBand infinite">Click Me</div>
       </div>
       <div class="login">
@@ -50,12 +50,12 @@
 
   $('.alert').delay(2000).fadeIn(300);
 
-  $('.fa-times-circle').click(function(){
+  $('.fa-sign-in').click(function(){
     $(this).parent('.alert').fadeOut(300);
   });
 
   $('.switch').click(function(){
-    $(this).children('i').toggleClass('fa-pencil');
+    $(this).children('i').toggleClass('fa-user-plus');
     $('.login').animate({height: "toggle", opacity: "toggle"}, "slow");
     $('.register').animate({height: "toggle", opacity: "toggle"}, "slow");
   });

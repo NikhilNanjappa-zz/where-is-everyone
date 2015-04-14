@@ -17,7 +17,8 @@ app.controller('NavBarCtrl', function ($scope, $cookieStore, $location, Notifica
   $scope.logout = function() {
     $cookieStore.remove("emp_name");
     $cookieStore.remove("emp_id");
-    $location.path("/register");
+    $cookieStore.remove("signed_in");
+    $location.path("/");
     Notification.success('Your are successfully logged out');
   }
 

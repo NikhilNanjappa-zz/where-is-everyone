@@ -21,7 +21,6 @@
   scope.register = function () {
     var allowed="/^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$/i";
     if((scope.registerName == undefined) || (scope.registerEmail == undefined) || (scope.registerPassword == undefined) || (scope.registerName == "") || (scope.registerEmail == "") || (scope.registerPassword == "")) {
-      console.log('here');
       Notification.error('All the fields are required');
     }
     else if(scope.registerEmail != allowed) {
@@ -62,7 +61,6 @@
   };
 
   scope.login = function () {
-    console.log(cookieStore.get('loggedin'));
     if((scope.loginEmail == undefined) || (scope.loginPassword == undefined) || (scope.loginEmail == "") || (scope.loginPassword == "")) {
       Notification.error('Email and Password fields are empty');
     }
@@ -85,7 +83,7 @@
           Notification.primary('You are Successfully logged in');
           cookieStore.put("emp_name", data.message.name);
           cookieStore.put("emp_id", data.message.id);
-          location.path('/about');
+          location.path("/about");
         }
       }).
         error(function(data, status, headers, config) {

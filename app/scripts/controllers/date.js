@@ -7,17 +7,26 @@
  * # MainCtrl
  * Controller of the whereIsEveryoneApp
  */
-app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, Notification) {
+app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, Notification, $compile) {
 
   $rootScope.updateStatusMenu = false;
   $rootScope.viewStatusMenu = true;
   $rootScope.navbar = true;
   $rootScope.footer = true;
 
-  var date = new Date();
-  var d = date.getDate();
-  var m = date.getMonth();
-  var y = date.getFullYear();
+  $scope.monthlyEmployeeStatus = function (emp_id,month,year) {
+    var req = {
+      method: "GET",
+      url: 'http://where-is-everyone.herokuapp.com/api/v1/monthly_status?employee_id='+emp_id+'&month='+month+'&year='+year,
+      headers: {
+        'Authorization': 'Token 0a4bc86dc7c9859b8244e4bd94dd66ed'
+      }
+    };
+
+    $http(req).success(function(data, status){
+
+  //------------------------- Calling Calendar
+
   var calendar = $('#calendar').fullCalendar({
     header: {
       left: 'prev,next today',
@@ -28,129 +37,110 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
     selectHelper: true,
     select: function(start, end, allDay) {
 
-      var title = {
-        state0: {
-          title: 'Enter your Status details',
-          html:'<label>Choose Status<select id="here" name="travel" multiple>'+
-          '<option value="WorkingFromHome" selected>Working From Home</option>'+
-          '<option value="OnClientSide">On Client Side</option>'+
-          '<option value="Sick">Sick</option>'+
-          '<option value="InOffice">InOffice</option>'+
-          '<option value="PL">Planned leave</option>'+
-          '<option value="CL">Casual leave</option>'+
-          '<option value="Others">Others (mention in remarks)</option>'+
-          '</select></label>'+
-          '<br/>'+
-          '<p>Please mention remarks if any:</p><div class="field"><textarea id="rate_comments" name="rate_comments"></textarea></div>',
-          buttons: { Cancel: 0, Finish: 1 },
-          focus: 1,
-          submit:function(e,v,m,f){
-            if(v==0)
-              $.prompt.close();
-            else if(v==1) {
-              // logic to make the employee status show on the calendar
-              calendar.fullCalendar('renderEvent',
-                {
-                  title: here.value,
-                  start: start,
-                  end: end,
-                  allDay: allDay
-                },
-                true // make the event "stick"
-              );
-              var emp_id = $cookieStore.get("emp_id");
-              var emp_status = here.value;
-              var emp_leave_date = $.fullCalendar.formatDate(start, "yyyy-MM-dd");
-              var emp_remarks = $("#rate_comments").val();
+      var check = $.fullCalendar.formatDate(start,'yyyy-MM-dd');
+      var today = $.fullCalendar.formatDate(new Date(),'yyyy-MM-dd');
 
-              submitStatus(emp_id, emp_status, emp_leave_date, emp_remarks);
+      if(check > today) {
+        var title = {
+          state0: {
+            title: 'Enter your Status details',
+            html:'<label>Choose Status<select id="here" name="travel" multiple>'+
+            '<option value="WorkingFromHome" selected>Working From Home</option>'+
+            '<option value="OnClientSide">On Client Side</option>'+
+            '<option value="Sick">Sick</option>'+
+            '<option value="InOffice">InOffice</option>'+
+            '<option value="PL">Planned leave</option>'+
+            '<option value="CL">Casual leave</option>'+
+            '<option value="Others">Others (mention in remarks)</option>'+
+            '</select></label>'+
+            '<br/>'+
+            '<p>Please mention remarks if any:</p><div class="field"><textarea id="rate_comments" name="rate_comments"></textarea></div>',
+            buttons: { Cancel: 0, Finish: 1 },
+            focus: 1,
+            submit:function(e,v,m,f){
+              if(v==0)
+                $.prompt.close();
+              else if(v==1) {
+                // logic to make the employee status show on the calendar
+                calendar.fullCalendar('renderEvent',
+                  {
+                    title: here.value,
+                    start: start,
+                    end: end,
+                    allDay: allDay
+                  },
+                  true // make the event "stick"
+                );
+                var emp_id = $cookieStore.get("emp_id");
+                var emp_status = here.value;
+                var emp_leave_date = $.fullCalendar.formatDate(start, "yyyy-MM-dd");
+                var emp_remarks = $("#rate_comments").val();
 
-              calendar.fullCalendar('unselect');
-              return true;
-              // logic end
-            } // end if v==1
-          } // end submit logic
-        } // end state0
-      }; // end var-title
+                submitStatus(emp_id, emp_status, emp_leave_date, emp_remarks);
 
-      $.prompt(title,{
-        close: function(e,v,m,f){
-          if(v !== undefined){
-            var str = "You can now process with this given information:<br />";
-            $.each(f,function(i,obj){
-              str += i + " - <em>" + obj + "</em><br />";
-            });
-            $('#results').html(str);
+                calendar.fullCalendar('unselect');
+                return true;
+                // logic end
+              } // end if v==1
+            } // end submit logic
+          } // end state0
+        }; // end var-title
+
+        $.prompt(title,{
+          close: function(e,v,m,f){
+            if(v !== undefined){
+              var str = "You can now process with this given information:<br />";
+              $.each(f,function(i,obj){
+                str += i + " - <em>" + obj + "</em><br />";
+              });
+              $('#results').html(str);
+            }
+          },
+          classes: {
+            box: '',
+            fade: '',
+            prompt: '',
+            close: '',
+            title: 'lead',
+            message: '',
+            buttons: '',
+            button: 'btn',
+            defaultButton: 'btn-primary'
           }
-        },
-        classes: {
-          box: '',
-          fade: '',
-          prompt: '',
-          close: '',
-          title: 'lead',
-          message: '',
-          buttons: '',
-          button: 'btn',
-          defaultButton: 'btn-primary'
-        }
-      });
-
+        });
+      } // disable previous dates end
     },
-    editable: true,
-    events: [
-      {
-        title: 'All Day Event',
-        start: '2015-04-11'
-      },
-      {
-        title: 'Long Event',
-        start: '2015-04-12',
-        end: '2015-04-15'
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: new Date(y, m, d-3, 16, 0),
-        allDay: false
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: new Date(y, m, d+4, 16, 0),
-        allDay: false
-      },
-      {
-        title: 'Meeting',
-        start: new Date(y, m, d, 10, 30),
-        allDay: false
-      },
-      {
-        title: 'Lunch',
-        start: new Date(y, m, d, 12, 0),
-        end: new Date(y, m, d, 14, 0),
-        allDay: false
-      },
-      {
-        title: 'Birthday Party',
-        start: new Date(y, m, d+1, 19, 0),
-        end: new Date(y, m, d+1, 22, 30),
-        allDay: false
-      },
-      {
-        title: 'EGrappler.com',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-        url: 'http://EGrappler.com/'
-      },
-      {
-        title: 'My Day',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-        url: 'http://EGrappler.com/'
-      }
-    ]
+    editable: false,
+    events: data.message
   });
+  //------------------------- End calling calendar
+    }).
+      error(function(data, status){
+        $scope.data = data || "Request failed";
+        $scope.status = status;
+      });
+  };
+
+  // $('.fc-button-prev').click(function(){
+  //   $scope.prev_month = $('#calendar').fullCalendar( 'getDate').getMonth()+1;
+  //   $scope.prev_year = $('#calendar').fullCalendar( 'getDate').getFullYear();
+  //   console.log($scope.prev_month);
+  //   console.log($scope.prev_year);
+  //   $scope.monthlyEmployeeStatus($cookieStore.get("emp_id"),$scope.prev_month,$scope.prev_year);
+  // });
+
+  // $('.fc-button-next').click(function(){
+  //   $scope.next_month = $('#calendar').fullCalendar( 'getDate').getMonth()+1;
+  //   $scope.next_year = $('#calendar').fullCalendar( 'getDate').getFullYear();
+  //   console.log($scope.next_month);
+  //   console.log($scope.next_year);
+  //   $scope.monthlyEmployeeStatus($cookieStore.get("emp_id"),$scope.next_month,$scope.next_year);
+  // });
+
+  var current_month = $.fullCalendar.formatDate(new Date(), "MM");
+  var current_year = $.fullCalendar.formatDate(new Date(), "yyyy");
+
+  $scope.monthlyEmployeeStatus($cookieStore.get("emp_id"),current_month,current_year);
 
   function submitStatus(emp_id, emp_status, emp_leave_date, emp_remarks) {
       $http({
@@ -173,6 +163,7 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
           console.log(status);
         });
   }; //scope end
+
 
 });
 

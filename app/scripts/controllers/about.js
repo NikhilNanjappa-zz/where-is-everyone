@@ -60,7 +60,6 @@ app.controller('AboutCtrl', ['$scope','$http','$templateCache','$compile','$cook
   });
 
   scope.getStatuses = function(current_date, emp_id) {
-    console.log(emp_id);
     // HTTP GET request - to fetch all the statuses for a particular day
     if(emp_id == undefined) {
       var req = {
@@ -83,7 +82,6 @@ app.controller('AboutCtrl', ['$scope','$http','$templateCache','$compile','$cook
       };
     }
 
-    console.log(req.url);
     http(req).success(function(data, status){
       scope.rowCollection = data.message;
       scope.itemsByPage=15;
@@ -110,25 +108,21 @@ app.controller('AboutCtrl', ['$scope','$http','$templateCache','$compile','$cook
     scope.getStatuses(scope.formatted_current_date, undefined);
   });
 
-  //$(".fc-button-next").html(
+  // $(".fc-button-next").html(
   //  compile(
   //    "<span ng-click='changeListName()' class='fc-button fc-button-next fc-state-default fc-corner-right'><span class='fc-button-inner'><span class='fc-button-content'>&nbsp;►&nbsp;</span><span class='fc-button-effect'><span></span></span></span></span>"
   //  )(scope)
-  //);
-  //
-  //scope.changeListName = function() {
+  // );
+  
+  // scope.changeListName = function() {
   //  var current_date = $('#calendar2').fullCalendar( 'getDate' );
   //  scope.formatted_current_date = $.fullCalendar.formatDate(current_date, "yyyy-MM-dd");
-  //  scope.getStatuses();
-  //};
+  //  scope.getStatuses(scope.formatted_current_date, undefined);
+  // };
 
   var current_date = $('#calendar2').fullCalendar( 'getDate' );
   var formatted_current_date = $.fullCalendar.formatDate(current_date, "yyyy-MM-dd");
   scope.getStatuses(formatted_current_date);
-
-  scope.getMyStatus = function() {
-    scope.getStatuses(scope.formatted_current_date, cookieStore.get("emp_id"));
-  }
 
   scope.status = [
     'WorkingFromHome',
