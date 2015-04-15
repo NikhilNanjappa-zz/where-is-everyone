@@ -48,7 +48,7 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
       var check = $.fullCalendar.formatDate(start,'yyyy-MM-dd');
       var today = $.fullCalendar.formatDate(new Date(),'yyyy-MM-dd');
 
-      if(check > today && $scope.clickedDayTitle == "") {
+      if(check >= today && $scope.clickedDayTitle == "") {
         var title = {
           state0: {
             title: 'Enter your Status details',
