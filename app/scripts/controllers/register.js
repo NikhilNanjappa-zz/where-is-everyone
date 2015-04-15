@@ -32,7 +32,7 @@
     else {
       http({
         method: 'POST',
-        url: 'http://where-is-everyone.herokuapp.com/api/v1/register',
+        url: 'http://192.168.1.54:8080/api/v1/register',
         data: $.param({
           name: scope.registerName,
           email: scope.registerEmail,
@@ -67,7 +67,7 @@
     else {
       http({
         method: 'POST',
-        url: 'http://where-is-everyone.herokuapp.com/api/v1/authenticate',
+        url: 'http://192.168.1.54:8080/api/v1/authenticate',
         data: $.param({
           email: scope.loginEmail,
           password: scope.loginPassword

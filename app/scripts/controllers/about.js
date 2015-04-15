@@ -65,7 +65,7 @@ app.controller('AboutCtrl', ['$scope','$http','$templateCache','$compile','$cook
       var req = {
         method: "GET",
         //url: 'http://where-is-everyone.herokuapp.com/api/v1/statuses?date=2015-04-27',
-        url: 'http://where-is-everyone.herokuapp.com/api/v1/statuses?date='+current_date,
+        url: 'http://192.168.1.54:8080/api/v1/statuses?date='+current_date,
         headers: {
           'Authorization': 'Token 0a4bc86dc7c9859b8244e4bd94dd66ed'
         }
@@ -75,7 +75,7 @@ app.controller('AboutCtrl', ['$scope','$http','$templateCache','$compile','$cook
       var req = {
         method: "GET",
         //url: 'http://where-is-everyone.herokuapp.com/api/v1/statuses?date=2015-04-27',
-        url: 'http://where-is-everyone.herokuapp.com/api/v1/status?date='+current_date+'&employee_id='+emp_id,
+        url: 'http://192.168.1.54:8080/api/v1/status?date='+current_date+'&employee_id='+emp_id,
         headers: {
           'Authorization': 'Token 0a4bc86dc7c9859b8244e4bd94dd66ed'
         }

@@ -17,7 +17,7 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
   $scope.monthlyEmployeeStatus = function (emp_id,month,year) {
     var req = {
       method: "GET",
-      url: 'http://where-is-everyone.herokuapp.com/api/v1/monthly_status?employee_id='+emp_id+'&month='+month+'&year='+year,
+      url: 'http://192.168.1.54:8080/api/v1/monthly_status?employee_id='+emp_id+'&month='+month+'&year='+year,
       headers: {
         'Authorization': 'Token 0a4bc86dc7c9859b8244e4bd94dd66ed'
       }
@@ -160,7 +160,7 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
   function submitStatus(emp_id, emp_status, emp_leave_date, emp_remarks) {
       $http({
         method: 'POST',
-        url: 'http://where-is-everyone.herokuapp.com/api/v1/status',
+        url: 'http://192.168.1.54:8080/api/v1/status',
         data: $.param({
           employee_id: emp_id,
           status: emp_status,
