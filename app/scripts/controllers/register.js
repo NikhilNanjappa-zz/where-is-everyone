@@ -12,18 +12,18 @@
  */
   app.controller('RegisterCtrl', ['$scope','$http','Notification','$location','$cookieStore','$rootScope', function (scope, http, Notification, location, cookieStore, rootScope) {
 
-    ///^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$/i
-
   rootScope.navbar = false;
   rootScope.footer = false;
 
 
   scope.register = function () {
-    var allowed="/^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$/i";
+    // var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+    var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
     if((scope.registerName == undefined) || (scope.registerEmail == undefined) || (scope.registerPassword == undefined) || (scope.registerName == "") || (scope.registerEmail == "") || (scope.registerPassword == "")) {
       Notification.error('All the fields are required');
     }
-    else if(scope.registerEmail != allowed) {
+    else if(scope.registerEmail == '' || !re.test(scope.registerEmail)) {
       Notification.error('Invalid email id');
     }
     else if(scope.registerPassword != scope.registerConfirmPassword) {

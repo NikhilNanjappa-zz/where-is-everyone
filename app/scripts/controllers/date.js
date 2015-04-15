@@ -35,12 +35,20 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
     },
     selectable: true,
     selectHelper: true,
+    dayClick: function(date, allDay, jsEvent, view) {
+      var date2 = new Date(date.getFullYear(), date.getMonth(), date.getDate()+1);
+      var todaysEvents = $('#calendar').fullCalendar('clientEvents', function(event) {
+        return event.start >= date && event.start < date2
+      });
+      if(todaysEvents.length == 0) { $scope.clickedDayTitle = ""; }
+        else { $scope.clickedDayTitle = todaysEvents[0].title; }
+    },
     select: function(start, end, allDay) {
 
       var check = $.fullCalendar.formatDate(start,'yyyy-MM-dd');
       var today = $.fullCalendar.formatDate(new Date(),'yyyy-MM-dd');
 
-      if(check > today) {
+      if(check > today && $scope.clickedDayTitle == "") {
         var title = {
           state0: {
             title: 'Enter your Status details',
@@ -74,6 +82,7 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
                 var emp_id = $cookieStore.get("emp_id");
                 var emp_status = here.value;
                 var emp_leave_date = $.fullCalendar.formatDate(start, "yyyy-MM-dd");
+
                 var emp_remarks = $("#rate_comments").val();
 
                 submitStatus(emp_id, emp_status, emp_leave_date, emp_remarks);
@@ -109,6 +118,12 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
           }
         });
       } // disable previous dates end
+      else if(check < today) {
+        $.prompt('Cannot update on previous dates');
+      }
+      else {
+        $.prompt('You have already updated for this date');
+      }
     },
     editable: false,
     events: data.message
