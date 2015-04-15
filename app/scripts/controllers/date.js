@@ -29,7 +29,7 @@ app.controller('DateCtrl', function ($http, $scope, $rootScope, $cookieStore, No
 
   var calendar = $('#calendar').fullCalendar({
     header: {
-      left: 'prev,next today',
+      left: 'prev,next,today',
       center: 'title',
       right: ''
     },
